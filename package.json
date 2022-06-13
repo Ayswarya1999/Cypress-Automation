@@ -1,0 +1,62 @@
+{
+  "name": "project_automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "start1": "react-smoketest start",
+    "build1": "react-smoketest build",
+    "test:open": "cypress open",
+    "eject": "react-scripts eject",
+    "start-server": "nodemon server.js",
+    "clean:reportszip": "if exist reports rmdir /S/Q reports.ZIP",
+    "clean:reports": "if exist reports rmdir /S/Q reports",
+    "pretest": "npm run clean:reports",
+    "scripts": "cypress run --spec \"cypress/integration//*\",--browser chrome",
+    "smoketest": "npx cypress-tags run --env \"TAGS=@SmokeTest\" --headed --browser chrome",
+    "regressiontest": "npx cypress-tags run --env \"TAGS=@RegressionTest\" --headed --browser chrome",
+    "posttest": "node cucumber-html-report.js",
+    "test:smoketest": "npm run pretest && npm run smoketest && npm run posttest",
+    "test:demo": "npm run pretest && npm run demo && npm run posttest",
+    "V2Project":"cypress run --spec \"cypress/integration/WELLV2Project_UIAutomation/*\",--browser chrome",
+    "Hsr":"cypress run --spec \"cypress/integration/WELLHealthSafety_UIAutomation/*\",--browser chrome",
+    "WPR":"cypress run --spec \"cypress/integration/WELLPerformance_UIAutomation/*\",--browser chrome",
+    "fileCreateZip":"node zipfIlecreation.js",
+    "testV2Project": "npm run V2Project || npm run posttest",
+    "testHsr": "npm run Hsr || npm run posttest",
+    "testWPR": "npm run WPR || npm run posttest"
+  },
+  "bin": {
+    "cypress-tags": "cypress-tags.js"
+  },
+  "author": "IWBI",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^8.5.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-iframe": "^1.0.1",
+    "cypress-xpath": "^1.6.2",
+    "mocha": "^9.2.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.0.1",
+    "multiple-cucumber-html-reporter": "^1.18.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "reports/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "dependencies": {
+    "cypress-downloadfile": "^1.2.1",
+    "adm-zip": "^0.5.9"
+  }
+  
+}
