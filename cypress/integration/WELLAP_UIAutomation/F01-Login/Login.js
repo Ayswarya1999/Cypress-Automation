@@ -36,6 +36,4 @@ Then('User verifes the error message for invalid credentials', () => {
 And('User login must be unsuccessful', () => {
    cy.contains('Dashboard').should('not.exist')
 })
-And('User clicks on Sign IN button', function () {
-  
-})
+
