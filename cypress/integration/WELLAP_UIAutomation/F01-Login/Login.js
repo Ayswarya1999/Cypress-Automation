@@ -14,6 +14,7 @@ When('User enters username and password', function () {
 And('User clicks on Sign IN button', function () {
    cy.xpath(this.locator.loginBtn).click()
 })
+
 Then('User login must be successful', () => {
    cy.contains('Dashboard').should('be.visible')
 })
@@ -34,4 +35,7 @@ Then('User verifes the error message for invalid credentials', () => {
 })
 And('User login must be unsuccessful', () => {
    cy.contains('Dashboard').should('not.exist')
+})
+And('User clicks on Sign IN button', function () {
+  
 })
